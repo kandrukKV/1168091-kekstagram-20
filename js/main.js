@@ -52,4 +52,3 @@ var getDemoData = function () {
 var data = getDemoData();
 
 window.pictures.render(data);
-window.levelPin.activate();

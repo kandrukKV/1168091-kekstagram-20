@@ -10,7 +10,8 @@
     closeBtn.addEventListener('click', onCloseBtnClick);
     document.addEventListener('keydown', onCloseBtnPressEsc);
     imgUploadForm.classList.remove('hidden');
-    // window.levelPin.activate();
+    window.levelPin.activate();
+    window.effects.activate();
   };
 
   var removeUploadForm = function () {
@@ -33,8 +34,8 @@
     }
   };
 
-  onUploadFileInputChange();
+  // onUploadFileInputChange();
 
-  // uploadFileInput.addEventListener('change', onUploadFileInputChange);
+  uploadFileInput.addEventListener('change', onUploadFileInputChange);
 
 })();

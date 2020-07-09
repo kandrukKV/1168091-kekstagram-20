@@ -67,8 +67,14 @@
     bigPicture.classList.remove('hidden');
   };
 
+  var removeBigPicture = function () {
+    document.body.classList.remove('modal-open');
+    bigPicture.classList.add('hidden');
+  };
+
   window.bigPicture = {
-    show: showBigPicture
+    show: showBigPicture,
+    remove: removeBigPicture
   };
 
 })();

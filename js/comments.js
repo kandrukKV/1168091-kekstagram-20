@@ -8,7 +8,6 @@
   };
   var bigPicture = document.querySelector('.big-picture');
   var commentsList = bigPicture.querySelector('.social__comments');
-  // var commentCountBlock = bigPicture.querySelector('.social__comment-count');
   var commentsLoader = bigPicture.querySelector('.social__comments-loader');
   var allComments;
   var viewedComments;

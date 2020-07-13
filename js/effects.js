@@ -1,27 +1,27 @@
 'use strict';
 
 (function () {
-  var DEC_SCALE_VALUE = {
+  var SCALE_VALUE = {
     max: 100,
     min: 25,
     step: 25
   };
   var effectList = document.querySelector('.effects__list');
-  var inputEffect = document.querySelectorAll('input[name="effect"]');
+  var effectInputs = document.querySelectorAll('input[name="effect"]');
   var imgUpload = document.querySelector('.img-upload__preview img');
 
-  var incScaleBtn = document.querySelector('.scale__control--bigger');
-  var decScaleBtn = document.querySelector('.scale__control--smaller');
+  var increaseScaleButton = document.querySelector('.scale__control--bigger');
+  var decreaseScaleButton = document.querySelector('.scale__control--smaller');
   var scaleValue = document.querySelector('.scale__control--value');
 
 
   var getCurrentEffectName = function () {
-    for (var i = 0; i < inputEffect.length; i++) {
-      if (inputEffect[i].checked) {
+    for (var i = 0; i < effectInputs.length; i++) {
+      if (effectInputs[i].checked) {
         break;
       }
     }
-    return inputEffect[i].value;
+    return effectInputs[i].value;
   };
 
   var clearEffect = function () {
@@ -29,22 +29,17 @@
     imgUpload.removeAttribute('style');
   };
 
-  var setEffectName = function (effectName) {
-    clearEffect();
-    setScaleDefault();
-    var className = 'effects__preview--' + effectName;
-    imgUpload.className = className;
-    window.levelPin.setPinDefault();
-  };
 
   var setEffect = function (effectName) {
+    clearEffect();
+    setScaleDefault();
     if (effectName === 'none') {
       window.levelPin.hide();
-      setScaleDefault();
-      clearEffect();
     } else {
       window.levelPin.show();
-      setEffectName(effectName);
+      var className = 'effects__preview--' + effectName;
+      imgUpload.className = className;
+      window.levelPin.setPinDefault();
     }
   };
 
@@ -73,19 +68,19 @@
     setEffect(evt.target.value);
   };
 
-  var incScale = function () {
+  var increaseScale = function () {
     var value = parseInt(scaleValue.value, 10);
-    if (value < DEC_SCALE_VALUE.max) {
-      value += DEC_SCALE_VALUE.step;
+    if (value < SCALE_VALUE.max) {
+      value += SCALE_VALUE.step;
       scaleValue.value = value + '%';
       setImgScale(value);
     }
   };
 
-  var decScale = function () {
+  var decreaseScale = function () {
     var value = parseInt(scaleValue.value, 10);
-    if (value > DEC_SCALE_VALUE.min) {
-      value -= DEC_SCALE_VALUE.step;
+    if (value > SCALE_VALUE.min) {
+      value -= SCALE_VALUE.step;
       scaleValue.value = value + '%';
       setImgScale(value);
     }
@@ -102,15 +97,15 @@
   var activateEffects = function () {
     setScaleDefault();
     effectList.addEventListener('change', onEffectListChange);
-    incScaleBtn.addEventListener('click', incScale);
-    decScaleBtn.addEventListener('click', decScale);
+    increaseScaleButton.addEventListener('click', increaseScale);
+    decreaseScaleButton.addEventListener('click', decreaseScale);
   };
 
   var disableEffects = function () {
     clearEffect();
     effectList.removeEventListener('change', onEffectListChange);
-    incScaleBtn.removeEventListener('click', incScale);
-    decScaleBtn.removeEventListener('click', decScale);
+    increaseScaleButton.removeEventListener('click', increaseScale);
+    decreaseScaleButton.removeEventListener('click', decreaseScale);
   };
 
   window.effects = {

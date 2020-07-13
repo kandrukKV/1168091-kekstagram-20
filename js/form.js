@@ -8,7 +8,7 @@
   var hashTagsInput = document.querySelector('.text__hashtags');
   var closeBtn = document.querySelector('#upload-cancel');
   var commentsInput = document.querySelector('.text__description');
-  var uploarForm = document.querySelector('.img-upload__form');
+  var uploadForm = document.querySelector('.img-upload__form');
 
   var showUploadForm = function () {
     imgEditForm.classList.remove('hidden');
@@ -22,7 +22,7 @@
     imgEditForm.classList.add('hidden');
     window.levelPin.disable();
     window.effects.disable();
-    uploarForm.reset();
+    uploadForm.reset();
     removeListeners();
   };
 
@@ -50,9 +50,9 @@
     commentsInput.removeEventListener('ivalid', onCommentsInputInvalid);
   };
 
-  var isValidateHashTag = function (hasTag) {
+  var isValidateHashTag = function (hashTag) {
     var reg = /(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,19})(\b|\r)/;
-    return hasTag.match(reg) ? hasTag === hasTag.match(reg)[0] : false;
+    return hashTag.match(reg) ? hashTag === hashTag.match(reg)[0] : false;
   };
 
   var isValidateHashTagsCount = function (hashTags) {
@@ -60,12 +60,9 @@
   };
 
   var isEligibilityHashTags = function (hashTags) {
-    for (var i = 0; i < hashTags.length; i++) {
-      if (!isValidateHashTag(hashTags[i])) {
-        return false;
-      }
-    }
-    return true;
+    return hashTags.every(function (item) {
+      return isValidateHashTag(item);
+    });
   };
 
   var isRepeatHashTags = function (hashTags) {
@@ -112,7 +109,7 @@
 
   var onImgUploadFormSubmit = function (evt) {
     evt.preventDefault();
-    var formData = new FormData(uploarForm);
+    var formData = new FormData(uploadForm);
     window.upload(formData, window.page.showSuccessMessage, window.page.showErrorMessage);
     removeUploadForm();
   };

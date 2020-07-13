@@ -8,6 +8,10 @@
   var pin = document.querySelector('.effect-level__pin');
   var depthEffect = document.querySelector('.effect-level__depth');
   var inputDepthEffect = document.querySelector('.effect-level__value');
+  var pinMoveLimits = {
+    left: LEFT_MOVE_PIN_LIMIT,
+    right: RIGHT_MOVE_PIN_LIMIT
+  };
 
   var movePin = function (pinPosition) {
     pin.style.left = pinPosition + 'px';
@@ -42,10 +46,6 @@
     if (evt.button !== LEFT_MOUSE_BUTTON) {
       return;
     }
-    var pinMoveLimits = {
-      left: LEFT_MOVE_PIN_LIMIT,
-      right: RIGHT_MOVE_PIN_LIMIT
-    };
 
     var startPosition = evt.clientX;
 

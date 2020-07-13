@@ -15,14 +15,14 @@
 
   var removeComments = function () {
     var comments = bigPicture.querySelectorAll('.social__comment');
-    if (comments) {
+    if (comments.length) {
       comments.forEach(function (item) {
         item.remove();
       });
     }
   };
 
-  var createComment = function (comment) {
+  var createOneComment = function (comment) {
     var li = document.createElement('li');
     var img = document.createElement('img');
     var p = document.createElement('p');
@@ -48,7 +48,7 @@
     removeComments();
     var fragment = document.createDocumentFragment();
     cooments.forEach(function (item) {
-      var comment = createComment(item);
+      var comment = createOneComment(item);
       fragment.appendChild(comment);
     });
     commentsList.appendChild(fragment);
@@ -87,7 +87,7 @@
   };
 
   var disableComments = function () {
-    commentsLoader.addEventListener('click', onCommentsLoaderClick);
+    commentsLoader.remove('click', onCommentsLoaderClick);
   };
 
   window.comments = {

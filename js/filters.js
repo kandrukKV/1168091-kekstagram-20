@@ -2,13 +2,13 @@
 
 (function () {
   var NUMBER_OF_RANDOM_PICTURE = 10;
-  var filters = document.querySelector('.img-filters');
+  var filtersBlosk = document.querySelector('.img-filters');
   var defaultBtn = document.querySelector('#filter-default');
   var randomtBtn = document.querySelector('#filter-random');
   var discussedBtn = document.querySelector('#filter-discussed');
 
   var activateFilters = function () {
-    filters.classList.remove('img-filters--inactive');
+    filtersBlosk.classList.remove('img-filters--inactive');
     defaultBtn.addEventListener('click', onDefaultBtnClick);
     randomtBtn.addEventListener('click', onRandomBtnClick);
     discussedBtn.addEventListener('click', onDiscussedBtnClick);

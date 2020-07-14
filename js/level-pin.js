@@ -22,8 +22,7 @@
   };
 
   var moveDepth = function (pinPosition) {
-    var depthPosition = castPinPosition(pinPosition) + '%';
-    depthEffect.style.width = depthPosition;
+    depthEffect.style.width = castPinPosition(pinPosition) + '%';
   };
 
   var setDepthEffectToInput = function (pinPosition) {

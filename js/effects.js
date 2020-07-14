@@ -6,6 +6,15 @@
     min: 25,
     step: 25
   };
+
+  var Filrer = {
+    CHROME: 'chrome',
+    SEPIA: 'sepia',
+    MARVIN: 'marvin',
+    PHOBOS: 'phobos',
+    HEAT: 'heat'
+  };
+
   var effectList = document.querySelector('.effects__list');
   var effectInputs = document.querySelectorAll('input[name="effect"]');
   var imgUpload = document.querySelector('.img-upload__preview img');
@@ -37,28 +46,28 @@
       window.levelPin.hide();
     } else {
       window.levelPin.show();
-      var className = 'effects__preview--' + effectName;
-      imgUpload.className = className;
+      imgUpload.className = 'effects__preview--' + effectName;
       window.levelPin.setPinDefault();
     }
   };
 
   var setDepthEffect = function () {
     var depthEffect = window.levelPin.getPosition();
+
     switch (getCurrentEffectName()) {
-      case 'chrome':
+      case Filrer.CHROME:
         imgUpload.style.filter = 'grayscale(' + depthEffect / 100 + ')';
         break;
-      case 'sepia':
+      case Filrer.SEPIA:
         imgUpload.style.filter = 'sepia(' + depthEffect / 100 + ')';
         break;
-      case 'marvin':
+      case Filrer.MARVIN:
         imgUpload.style.filter = 'invert(' + depthEffect + '%)';
         break;
-      case 'phobos':
+      case Filrer.PHOBOS:
         imgUpload.style.filter = 'blur(' + depthEffect * 3 / 100 + 'px)';
         break;
-      case 'heat':
+      case Filrer.HEAT:
         imgUpload.style.filter = 'brightness(' + depthEffect * 3 / 100 + ')';
         break;
     }

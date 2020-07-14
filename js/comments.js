@@ -9,6 +9,7 @@
   var bigPicture = document.querySelector('.big-picture');
   var commentsList = bigPicture.querySelector('.social__comments');
   var commentsLoader = bigPicture.querySelector('.social__comments-loader');
+  var commentsViewed = bigPicture.querySelector('.comments-viewed');
   var allComments;
   var viewedComments;
 
@@ -45,7 +46,6 @@
   };
 
   var createComments = function (cooments) {
-    removeComments();
     var fragment = document.createDocumentFragment();
     cooments.forEach(function (item) {
       var comment = createOneComment(item);
@@ -55,23 +55,30 @@
   };
 
   var onCommentsLoaderClick = function () {
-    refreshComments();
+    addComments();
+  };
+
+  var setCommentsViewedValue = function (value) {
+    commentsViewed.textContent = value;
   };
 
   var showComments = function (comments) {
     allComments = comments;
+    removeComments();
     if (allComments.length <= MAX_NUMBER_COMMENTS) {
+      setCommentsViewedValue(allComments.length);
       commentsLoader.classList.add('hidden');
       createComments(allComments);
     } else {
+      commentsLoader.classList.remove('hidden');
       viewedComments = MAX_NUMBER_COMMENTS;
+      setCommentsViewedValue(viewedComments);
       createComments(allComments.slice(0, MAX_NUMBER_COMMENTS));
       commentsLoader.addEventListener('click', onCommentsLoaderClick);
-      commentsLoader.classList.remove('hidden');
     }
   };
 
-  var refreshComments = function () {
+  var addComments = function () {
     var begin = viewedComments;
     var numberUnviewedComments = allComments.length - viewedComments;
     var end;
@@ -83,11 +90,12 @@
       commentsLoader.classList.add('hidden');
     }
     viewedComments = end;
+    setCommentsViewedValue(viewedComments);
     createComments(allComments.slice(begin, end));
   };
 
   var disableComments = function () {
-    commentsLoader.remove('click', onCommentsLoaderClick);
+    commentsLoader.removeEventListener('click', onCommentsLoaderClick);
   };
 
   window.comments = {

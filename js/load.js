@@ -4,7 +4,8 @@
   var LOAD_URL = 'https://javascript.pages.academy/kekstagram/data';
   var SERVER_STATUS_OK = 200;
   var TIMEOUT = 1000;
-  var load = function (onSuccess, onError) {
+
+  window.load = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -29,7 +30,5 @@
     xhr.open('GET', LOAD_URL);
     xhr.send();
   };
-
-  window.load = load;
 
 })();

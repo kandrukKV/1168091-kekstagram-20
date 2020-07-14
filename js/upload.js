@@ -3,7 +3,8 @@
 (function () {
   var UPLOAD_URL = 'https://javascript.pages.academy/kekstagram';
   var SERVER_STATUS_OK = 200;
-  var upload = function (data, onSuccess, onError) {
+
+  window.upload = function (data, onSuccess, onError) {
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener('load', function () {
@@ -22,5 +23,4 @@
     xhr.send(data);
   };
 
-  window.upload = upload;
 })();
